@@ -11,6 +11,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { href, local, typePath, dateLabel } from "@/lib/i18n";
+import { whatsappHref } from "@/lib/contact";
 import type { Content, Locale } from "@/lib/types";
 import { Button } from "./ui/button";
 export function ContentExplorer({
@@ -224,7 +225,7 @@ export function Readiness({ locale }: { locale: Locale }) {
               )}
             </p>
           )}
-          <Link className="text-link" href={href(locale, "iletisim")}>
+          <Link className="text-link" href={whatsappHref(locale)}>
             {local(
               locale,
               "Birlikte değerlendirelim",

@@ -13,6 +13,7 @@ import {
   MessageCircle,
 } from "lucide-react";
 import { href, local } from "@/lib/i18n";
+import { whatsappHref, WHATSAPP_DISPLAY_NUMBER } from "@/lib/contact";
 import type { Locale, Settings } from "@/lib/types";
 export function Logo({
   locale = "tr",
@@ -176,7 +177,7 @@ export function Header({ locale }: { locale: Locale }) {
                 {local(locale, tr, en)}
               </Link>
             ))}
-            <Link href={href(locale, "iletisim")} className="mobile-contact">
+            <Link href={whatsappHref(locale)} className="mobile-contact">
               {local(locale, "İletişim", "Contact")}
             </Link>
           </nav>
@@ -194,7 +195,7 @@ export function Header({ locale }: { locale: Locale }) {
             </Link>
             <Link
               className="button button-small header-cta"
-              href={href(locale, "iletisim")}
+              href={whatsappHref(locale)}
             >
               {local(locale, "Birlikte Başlayalım", "Let’s get started")}
               <ArrowUpRight size={17} />
@@ -226,67 +227,18 @@ export function WhatsApp({
   number: string;
   service?: string;
 }) {
-  const [open, setOpen] = useState(false);
-  const message = local(
-    locale,
-    `Merhaba, ${service || "Kenya danışmanlık hizmetleriniz"} hakkında bilgi almak istiyorum.`,
-    `Hello, I would like information about ${service || "your Kenya consulting services"}.`,
-  );
   return (
     <div className="whatsapp-wrap">
-      {open && (
-        <div className="whatsapp-panel">
-          <button
-            className="panel-close"
-            onClick={() => setOpen(false)}
-            aria-label={local(locale, "Kapat", "Close")}
-          >
-            <X size={16} />
-          </button>
-          <strong>{local(locale, "Birlikte konuşalım.", "Let’s talk.")}</strong>
-          <p>
-            {local(
-              locale,
-              "WhatsApp hattımız henüz eklenmedi. Bize ön görüşme formundan ulaşabilirsiniz.",
-              "Our WhatsApp number has not been added yet. Please use the introductory enquiry form.",
-            )}
-          </p>
-          <Link
-            href={href(locale, "iletisim")}
-            onClick={() => setOpen(false)}
-            className="text-link"
-          >
-            {local(locale, "Ön görüşme talep et", "Request a conversation")}
-            <ArrowRight size={15} />
-          </Link>
-        </div>
-      )}
-      {number ? (
-        <a
-          className="whatsapp-button"
-          aria-label="WhatsApp"
-          href={`https://wa.me/${number}?text=${encodeURIComponent(message)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <MessageCircle size={23} />
-          <span>WhatsApp</span>
-        </a>
-      ) : (
-        <button
-          className="whatsapp-button"
-          aria-label={local(
-            locale,
-            "WhatsApp iletişim seçenekleri",
-            "WhatsApp contact options",
-          )}
-          onClick={() => setOpen(!open)}
-          aria-expanded={open}
-        >
-          <MessageCircle size={23} />
-          <span>{local(locale, "Bize ulaşın", "Get in touch")}</span>
-        </button>
-      )}
+      <a
+        className="whatsapp-button"
+        aria-label={local(locale, "WhatsApp üzerinden bize ulaşın", "Contact us on WhatsApp")}
+        href={whatsappHref(locale, service, number)}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <MessageCircle size={23} />
+        <span>{local(locale, "Bize ulaşın", "Get in touch")}</span>
+      </a>
     </div>
   );
 }
@@ -327,7 +279,7 @@ export function Footer({
                 "Sourcing from Kenya",
               ],
             ].map(([p, tr, en]) => (
-              <Link key={p} href={href(locale, p)}>
+              <Link key={p} href={p === "iletisim" ? whatsappHref(locale) : href(locale, p)}>
                 {local(locale, tr, en)}
               </Link>
             ))}
@@ -350,7 +302,7 @@ export function Footer({
               ],
               ["iletisim", "İletişim", "Contact"],
             ].map(([p, tr, en]) => (
-              <Link key={p} href={href(locale, p)}>
+              <Link key={p} href={p === "iletisim" ? whatsappHref(locale) : href(locale, p)}>
                 {local(locale, tr, en)}
               </Link>
             ))}
@@ -364,13 +316,11 @@ export function Footer({
                 "Tell us your goal. Let’s discuss how we can support you in Kenya.",
               )}
             </p>
-            <Link className="footer-cta" href={href(locale, "iletisim")}>
+            <Link className="footer-cta" href={whatsappHref(locale)}>
               {local(locale, "Ön görüşme talep et", "Request a conversation")}
               <ArrowUpRight size={18} />
             </Link>
-            {settings.email && (
-              <a href={`mailto:${settings.email}`}>{settings.email}</a>
-            )}
+            <a href={whatsappHref(locale)}>{WHATSAPP_DISPLAY_NUMBER}</a>
           </div>
         </div>
         <div className="footer-bottom">

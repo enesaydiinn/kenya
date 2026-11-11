@@ -33,7 +33,7 @@ Yerel ortamda `.data/` altında gerçek, kalıcı form kayıtları ve yönetim v
 
 Girişten sonra müşteri taleplerini filtreleyin, ayrıntıları açın, durumu güncelleyin veya CSV indirin. İçerik merkezinden taslakları düzenleyin, incelemeye gönderin ve doğruladıktan sonra yayımlayın. Site ayarlarından kurucu bilgileri, iletişim, ana sayfa metinleri ve gizlilik metinlerini girin.
 
-WhatsApp numarası yalnız ülke koduyla rakam olarak yazılır. Numara yoksa `wa.me` bağlantısı üretilmez. Takvim adresi yoksa randevu seçeneği sunulmaz; form gönderimi bir rezervasyon olarak gösterilmez. E-posta bildirimi yalnız sağlayıcı yapılandırılmışsa gönderilir; başarısız bildirim form kaydını kaybettirmez ve yönetimde durumu görünür.
+Ziyaretçilere açık iletişim, tanışma ve ücretsiz ön görüşme bağlantıları WhatsApp hattı **+254 114 601 485** adresine gider. Ortak bağlantı ve Türkçe/İngilizce mesaj taslakları `src/lib/contact.ts` içinde tanımlıdır; hizmet sayfalarında taslağa hizmet adı da eklenir. `/iletisim` ve `/en/iletisim` adresleri de WhatsApp’a yönlenir. Bağlantı sohbeti açar; mesajı ziyaretçi gönderir. Eski başvuru API’si ve yönetim kayıtları korunur; ziyaretçi akışı WhatsApp üzerinden ilerler.
 
 ## Üretime geçiş
 

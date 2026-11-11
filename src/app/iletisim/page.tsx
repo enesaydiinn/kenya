@@ -1,4 +1,6 @@
-import SitePage, { generateMetadata as siteMetadata } from "../[[...path]]/page";
+import { redirect } from "next/navigation";
+import { whatsappHref } from "@/lib/contact";
+import { generateMetadata as siteMetadata } from "../[[...path]]/page";
 
 // Contact reads search parameters and must not inherit the catch-all's ISR mode.
 export const dynamic = "force-dynamic";
@@ -9,10 +11,11 @@ export function generateMetadata() {
   return siteMetadata({ params: contactParams() });
 }
 
-export default function ContactPage({
+export default async function ContactPage({
   searchParams,
 }: {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
-  return <SitePage params={contactParams()} searchParams={searchParams} />;
+  const query = await searchParams;
+  redirect(whatsappHref("tr", typeof query.service === "string" ? query.service : undefined));
 }

@@ -1,4 +1,5 @@
 import type { Content, Locale, Settings, Section } from "./types";
+import { WHATSAPP_NUMBER } from "./contact";
 export const sources = {
   kra: {
     title: "Kenya Revenue Authority — How to import",
@@ -25,7 +26,7 @@ const date = "2026-11-11T09:00:00.000Z";
 export const defaultSettings: Settings = {
   email: "",
   phone: "",
-  whatsapp: "",
+  whatsapp: WHATSAPP_NUMBER,
   address: "",
   founderName: "Ömer Faruk Arslan",
   founderBio: "",

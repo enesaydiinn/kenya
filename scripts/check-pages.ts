@@ -11,7 +11,6 @@ const main = [
   "sektorler",
   "blog",
   "sikca-sorulan-sorular",
-  "iletisim",
   "ihracata-hazirlik",
   "kenya-ticaret-rehberi",
   "kenyadan-turkiyeye-ticaret",
@@ -40,6 +39,12 @@ while (paths.length) {
       const r = await fetch(base + p);
       const html = await r.text();
       if (r.status !== 200) failures.push(`${p}: ${r.status}`);
+      for (const match of html.matchAll(/href="(https:\/\/wa\.me\/[^\"]+)"/g)) {
+        if (new URL(match[1].replaceAll("&amp;", "&")).pathname !== "/254114601485")
+          failures.push(`${p}: incorrect WhatsApp recipient`);
+      }
+      if (/href="(?:\/en)?\/iletisim(?:[?\"])/.test(html))
+        failures.push(`${p}: contact link does not go directly to WhatsApp`);
       const title = html.match(/<title>([\s\S]*?)<\/title>/)?.[1];
       if (!title) failures.push(`${p}: no title`);
       else if (titles.has(title)) failures.push(`${p}: duplicate title`);
@@ -69,6 +74,25 @@ while (paths.length) {
     }),
   );
 }
+const contactRedirects = [
+  ["/iletisim", ""],
+  ["/en/iletisim", ""],
+  ["/iletisim?service=" + encodeURIComponent("Pazar Araştırması"), "Pazar Araştırması"],
+  ["/en/iletisim?service=" + encodeURIComponent("Market Research"), "Market Research"],
+];
+for (const [path, service] of contactRedirects) {
+  const response = await fetch(base + path, { redirect: "manual" });
+  const location = response.headers.get("location");
+  if (response.status !== 307 || !location) {
+    failures.push(`${path}: expected WhatsApp redirect, got ${response.status}`);
+    continue;
+  }
+  const target = new URL(location);
+  if (target.origin !== "https://wa.me" || target.pathname !== "/254114601485")
+    failures.push(`${path}: incorrect WhatsApp redirect recipient`);
+  if (service && !target.searchParams.get("text")?.includes(service))
+    failures.push(`${path}: service missing from WhatsApp draft`);
+}
 for (const p of links) {
   const r = await fetch(base + p, { redirect: "manual" });
   if (r.status >= 400) failures.push(`broken link ${p}: ${r.status}`);
@@ -88,6 +112,7 @@ const result = {
   date: new Date().toISOString(),
   pages: checked,
   internalLinks: links.size,
+  contactRedirects: contactRedirects.length,
   draftChecks: seedContent.filter((c) => c.status === "draft").length,
   failures,
 };

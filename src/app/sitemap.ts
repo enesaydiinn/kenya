@@ -13,7 +13,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "sektorler",
     "kenya-rehberi",
     "blog",
-    "iletisim",
     "ihracata-hazirlik",
     "kenya-ticaret-rehberi",
     "kenyadan-turkiyeye-ticaret",

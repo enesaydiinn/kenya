@@ -1,5 +1,6 @@
 import { contentFAQ } from "@/lib/faq";
 import { defaultSettings } from "@/lib/content";
+import { whatsappHref } from "@/lib/contact";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -201,7 +202,7 @@ export function CTA({ locale }: { locale: Locale }) {
           )}
         </p>
       </div>
-      <Link href={href(locale, "iletisim")} className="button button-cream">
+      <Link href={whatsappHref(locale)} className="button button-cream">
         {local(
           locale,
           "Ücretsiz Ön Görüşme Talep Et",
@@ -381,7 +382,7 @@ function PersonalIntroduction({
           </span>
         </div>
         <div className="personal-actions">
-          <Link className="button" href={href(locale, "iletisim")}>
+          <Link className="button" href={whatsappHref(locale)}>
             {local(locale, "Tanışalım", "Let’s talk")}
             <ArrowUpRight size={18} />
           </Link>
@@ -459,7 +460,7 @@ export function Home({
               )}
           </p>
           <div className="hero-actions">
-            <Link className="button" href={href(locale, "iletisim")}>
+            <Link className="button" href={whatsappHref(locale)}>
               {local(
                 locale,
                 "Ücretsiz Ön Görüşme",
@@ -1168,10 +1169,7 @@ export function Detail({
           <p>{c.description}</p>
           {c.type === "service" ? (
             <Link
-              href={href(
-                locale,
-                `iletisim?service=${encodeURIComponent(c.title)}`,
-              )}
+              href={whatsappHref(locale, c.title)}
               className="button"
             >
               {local(
@@ -1282,7 +1280,7 @@ export function Detail({
                   "Let’s review your needs together.",
                 )}
               </p>
-              <Link href={href(locale, "iletisim")} className="button">
+              <Link href={whatsappHref(locale)} className="button">
                 {local(locale, "Ön Görüşme Talep Et", "Request a conversation")}
                 <ArrowUpRight size={17} />
               </Link>
@@ -1799,7 +1797,7 @@ export function Sourcing({ locale }: { locale: Locale }) {
               "Start with specifications, quantities, quality expectations and research objectives.",
             )}
           </p>
-          <Link className="button" href={href(locale, "iletisim")}>
+          <Link className="button" href={whatsappHref(locale)}>
             {local(
               locale,
               "Tedarik araştırması talep et",
