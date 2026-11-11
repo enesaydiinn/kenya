@@ -99,8 +99,8 @@ export function Header({ locale }: { locale: Locale }) {
             <MapPin size={12} />
             {local(
               locale,
-              "Nairobi, Kenya’da sahadayız",
-              "On the ground in Nairobi, Kenya",
+              "Kenya genelinde sahadayız",
+              "On the ground across Kenya",
             )}
             <span className="top-separator" />
             TR ↔ KE
@@ -312,7 +312,7 @@ export function Footer({
             </p>
             <span className="footer-location">
               <MapPin size={15} />
-              Nairobi & Mombasa · Kenya
+              {local(locale, "Kenya genelinde", "Across Kenya")}
             </span>
           </div>
           <div>

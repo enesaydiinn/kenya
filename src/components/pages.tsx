@@ -475,7 +475,7 @@ export function Home({
         <div>
           <MapPin size={23} />
           <span>
-            Nairobi & Mombasa
+            {local(locale, "Kenya genelinde", "Across Kenya")}
             <small>
               {local(
                 locale,
@@ -1387,7 +1387,11 @@ export function Contact({
             <div>
               <MapPin size={21} />
               <span>
-                Kenya<small>{settings.address || "Nairobi & Mombasa"}</small>
+                Kenya
+                <small>
+                  {settings.address ||
+                    local(locale, "Kenya genelinde hizmet", "Serving all of Kenya")}
+                </small>
               </span>
             </div>
             {settings.email && (
