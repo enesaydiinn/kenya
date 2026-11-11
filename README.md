@@ -54,6 +54,6 @@ npm run start
 
 ## Görseller ve kaynaklar
 
-Nairobi fotoğrafı: [imsogabriel stock / Unsplash](https://unsplash.com/photos/a-cityscape-of-nairobi-kenya-on-a-sunny-day-IaJm3mq0F5o), Unsplash lisansı. Lojistik görseli: [Unsplash](https://images.unsplash.com/photo-1494412519320-aa613dfb7738), görsel dosyası `photo-1494412519320-aa613dfb7738`; genel lojistik görselidir ve Mombasa fotoğrafı olarak sunulmaz. Orijinal JPEG'ler ve optimize WebP sürümleri projede yer alır. Fontlar yerel paketlerden sunulur; haricî font isteği yoktur.
+Nairobi fotoğrafı: [imsogabriel stock / Unsplash](https://unsplash.com/photos/a-cityscape-of-nairobi-kenya-on-a-sunny-day-IaJm3mq0F5o), Unsplash lisansı. Lojistik görseli: [Unsplash](https://images.unsplash.com/photo-1494412519320-aa613dfb7738), görsel dosyası `photo-1494412519320-aa613dfb7738`; genel lojistik görselidir ve Mombasa fotoğrafı olarak sunulmaz. Orijinal JPEG'ler ve optimize WebP sürümleri projede yer alır. Ana sayfa ve Hakkımızda bölümündeki kişisel fotoğraf, kullanıcının site için paylaştığı `omer.jpeg` dosyasından WebP olarak hazırlanmıştır; kişiye veya fotoğrafın içeriğine müdahale edilmemiştir. Portre ve isim yönetim panelindeki kurucu ayarlarından güncellenebilir. Fontlar yerel paketlerden sunulur; haricî font isteği yoktur.
 
 Resmî içerik kaynakları ilgili sayfalarda bağlantılıdır: KRA, KEBS, KenInvest, Kenya eTA ve Mombasa Investment Corporation. İstatistik, referans, müşteri sayısı veya başarı garantisi üretilmemiştir.

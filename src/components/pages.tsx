@@ -1,4 +1,5 @@
 import { contentFAQ } from "@/lib/faq";
+import { defaultSettings } from "@/lib/content";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -40,6 +41,7 @@ const icons = [
 ];
 const linkFor = (locale: Locale, c: Content) =>
   href(locale, `${typePath[c.type]}/${c.slug}`);
+const defaultPortrait = defaultSettings.founderImage;
 export function SectionTitle({
   eyebrow,
   title,
@@ -302,6 +304,96 @@ export function FAQ({
     </div>
   );
 }
+function PersonalIntroduction({
+  locale,
+  settings,
+}: {
+  locale: Locale;
+  settings: Settings;
+}) {
+  const name = settings.founderName || defaultSettings.founderName;
+  return (
+    <section
+      className="container personal-section"
+      aria-labelledby="personal-heading"
+    >
+      <figure className="personal-portrait">
+        <div className="personal-photo">
+          <Image
+            src={settings.founderImage || defaultPortrait}
+            alt={local(locale, `${name} — Danışman`, `${name} — Consultant`)}
+            fill
+            sizes="(max-width: 760px) 100vw, (max-width: 1100px) 42vw, 460px"
+          />
+        </div>
+        <figcaption>
+          <span className="status-dot" aria-hidden="true" />
+          <div>
+            <strong>{name}</strong>
+            <span>
+              {local(
+                locale,
+                "Danışman · Kenya genelinde",
+                "Consultant · Across Kenya",
+              )}
+            </span>
+          </div>
+          <span className="personal-country" aria-hidden="true">TR ↔ KE</span>
+        </figcaption>
+      </figure>
+      <div className="personal-copy">
+        <span className="eyebrow">
+          {local(
+            locale,
+            "BİRLİKTE ÇALIŞMADAN ÖNCE",
+            "BEFORE WE WORK TOGETHER",
+          )}
+        </span>
+        <h2 id="personal-heading">
+          {local(
+            locale,
+            "Tanışalım.\nKenya’da yanınızdayız.",
+            "Let’s meet.\nWe’re here in Kenya.",
+          )}
+        </h2>
+        <p className="personal-lead">
+          {local(
+            locale,
+            "Türkiye’den Kenya’ya uzanan sürecinizde, yerel bağlantınız olalım.",
+            "Let us be your local connection as you take your business from Türkiye to Kenya.",
+          )}
+        </p>
+        <p>
+          {local(
+            locale,
+            "İlk adım, sizi ve işinizi tanımak. İhtiyacınızı dinliyor; araştırılacak konuları, sahadaki adımları ve çalışma takvimini birlikte netleştiriyoruz. Gelişmeleri doğrudan iletişim ve düzenli raporlarla sizinle paylaşıyoruz.",
+            "The first step is getting to know you and your business. We listen, then agree what to research, the steps on the ground and a timeline. Direct communication and regular reports keep you informed along the way.",
+          )}
+        </p>
+        <div className="personal-details">
+          <span>
+            <MapPin size={19} strokeWidth={1.6} />
+            {local(locale, "Kenya genelinde saha desteği", "On-the-ground support across Kenya")}
+          </span>
+          <span>
+            <MessageSquare size={19} strokeWidth={1.6} />
+            {local(locale, "Türkçe ve İngilizce iletişim", "Turkish and English communication")}
+          </span>
+        </div>
+        <div className="personal-actions">
+          <Link className="button" href={href(locale, "iletisim")}>
+            {local(locale, "Tanışalım", "Let’s talk")}
+            <ArrowUpRight size={18} />
+          </Link>
+          <Link className="text-link" href={href(locale, "hakkimizda")}>
+            {local(locale, "Hikâyemizi okuyun", "Read our story")}
+            <ArrowRight size={17} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
 export function Home({
   locale,
   content,
@@ -446,9 +538,6 @@ export function Home({
             </div>
             <ArrowUpRight size={23} />
           </div>
-          <span className="image-credit">
-            {local(locale, "Fotoğraf", "Photo")}: imsogabriel stock / Unsplash
-          </span>
         </div>
       </section>
       <div className="container bridge-strip">
@@ -503,6 +592,7 @@ export function Home({
           </span>
         </div>
       </div>
+      <PersonalIntroduction locale={locale} settings={settings} />
       <section className="container journey-section">
         <div className="journey-intro">
           <span className="eyebrow">
@@ -1222,6 +1312,7 @@ export function About({
   locale: Locale;
   settings: Settings;
 }) {
+  const name = settings.founderName || defaultSettings.founderName;
   const bio = locale === "tr" ? settings.founderBio : settings.founderBioEn;
   return (
     <>
@@ -1246,28 +1337,21 @@ export function About({
       <section className="container about-grid">
         <div className="about-image">
           <Image
-            src={settings.founderImage || "/images/nairobi.webp"}
+            src={settings.founderImage || defaultPortrait}
             fill
             sizes="(max-width:760px) 100vw, 45vw"
-            alt={
-              settings.founderImage
-                ? settings.founderName || local(locale, "Kurucu", "Founder")
-                : local(locale, "Nairobi şehir silüeti", "Nairobi skyline")
-            }
+            alt={local(locale, `${name} — Danışman`, `${name} — Consultant`)}
           />
-          <span>{settings.founderName || "NAIROBI, KENYA"}</span>
+          <span>
+            {name} · {local(locale, "Danışman", "Consultant")}
+          </span>
         </div>
         <div className="article-body">
           <span className="eyebrow">
-            {local(locale, "KURUCUNUN HİKÂYESİ", "THE FOUNDER’S STORY")}
+            {local(locale, "KENYA’DAKİ DANIŞMANINIZ", "YOUR CONSULTANT IN KENYA")}
           </span>
           <h2>
-            {settings.founderName ||
-              local(
-                locale,
-                "Afrika’da başlayan bir saha deneyimi.",
-                "Field experience that began in Africa.",
-              )}
+            {name}
           </h2>
           <p>
             {bio ||
