@@ -1,0 +1,12 @@
+node_modules/
+.next/
+.open-next/
+dist/
+.env*
+!.env.example
+.data/
+*.tsbuildinfo
+playwright-report/
+test-results/
+.openai/.sites-*
+.wrangler/

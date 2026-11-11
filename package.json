@@ -1,0 +1,54 @@
+{
+  "name": "kenya-danismanlik",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "prisma generate && next build --webpack",
+    "start": "next start --hostname 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate deploy",
+    "admin:create": "tsx scripts/create-admin.ts",
+    "build:sites": "node scripts/build-sites.mjs",
+    "test:api": "node --env-file=.env.local --import tsx scripts/qa-api.ts",
+    "setup:local": "node scripts/setup-local.mjs",
+    "admin:setup": "node scripts/admin-setup.mjs",
+    "test:pages": "node --import tsx scripts/check-pages.ts"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "zod": "latest",
+    "lucide-react": "latest",
+    "jose": "latest",
+    "server-only": "latest",
+    "@prisma/client": "6.19.0",
+    "@prisma/adapter-pg": "6.19.0",
+    "pg": "latest",
+    "@fontsource/dm-sans": "latest",
+    "@fontsource/manrope": "latest"
+  },
+  "devDependencies": {
+    "typescript": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/pg": "latest",
+    "prisma": "6.19.0",
+    "tsx": "latest",
+    "@opennextjs/cloudflare": "latest",
+    "tailwindcss": "latest",
+    "@tailwindcss/postcss": "latest",
+    "@axe-core/playwright": "latest",
+    "@playwright/test": "latest",
+    "lighthouse": "latest"
+  },
+  "overrides": {
+    "effect": "^3.20.0",
+    "deepmerge-ts": "^8.0.0"
+  },
+  "type": "module"
+}

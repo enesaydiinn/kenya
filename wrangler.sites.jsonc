@@ -1,0 +1,8 @@
+{
+  "$schema":"node_modules/wrangler/config-schema.json",
+  "name":"kenya-danismanlik",
+  "main":".open-next/sites-entry.mjs",
+  "compatibility_date":"2026-11-11",
+  "compatibility_flags":["nodejs_compat"],
+  "no_bundle":false
+}
